@@ -1,0 +1,65 @@
+{% load foundation utilities aggregator %}
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}scss/images/favicon.ico" type="image/x-icon" />
+    <title>{% block title %}{% firstof view.title title %}{% endblock %}{% block brand %}{% endblock %}</title>
+    {% block head %}
+    {% endblock %}
+    {% aggregate %}
+    {% sass %}
+    {% block sass %}<link rel="stylesheet" href="{{ STATIC_URL }}scss/app.scss" />{% endblock %}
+    {% endsass %}
+    <script src="{{ STATIC_URL  }}js/vendor/modernizr.js"></script>
+    {% endaggregate %}
+  </head>
+  <body class="{% urlclass %} {% block bodyclass %}{% endblock %}">
+    {% regroup messages by tags as type_list %}
+    <div class="top-messages">
+    {% for type in type_list %}
+    {% for message in type.list %}
+      <div data-alert class="alert-box {{ type.grouper }}">
+        {{ message|safe }}
+        <a href="#" class="close">&times;</a>
+      </div>
+    {% endfor %}
+    {% endfor %}
+    </div>
+    {% block site %}
+    {% endblock %}
+
+    {% aggregate %}
+    <script src="{{ STATIC_URL }}js/vendor/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.cookie.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/fastclick.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/placeholder.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.abide.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.accordion.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.alert.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.clearing.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.dropdown.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.equalizer.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.interchange.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.joyride.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.magellan.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.offcanvas.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.orbit.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.reveal.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.tab.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.tooltip.js"></script>
+    <script src="{{ STATIC_URL }}js/foundation.topbar.js"></script>
+    {% block js_libraries %}
+    {% endblock %}
+    <script src="{{ STATIC_URL }}js/csrf.js"></script>
+    <script src="{{ STATIC_URL }}js/app.js"></script>
+    {% block js %}
+    {% endblock %}
+    {% endaggregate %}
+
+    {% block bottom %}
+    {% endblock %}
+  </body>
+</html>

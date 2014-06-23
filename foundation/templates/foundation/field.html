@@ -1,0 +1,19 @@
+{% load foundation %}
+<div class="{% firstof columns 'large-12' %} columns {% if field.errors %}error{% endif %} field-{{ field.name }}">
+  <label for="id_{{ field.html_name }}">
+    {{ field.label }}{% if field.field.required %}<span class="required">*</span>{% endif %}
+  </label>
+  {% if field|foundation_widget_type == 'radioselect' %}
+    {% for radio in field %}
+    {{ radio.tag }}<label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+    {% endfor %}
+  {% elif field|foundation_widget_type == 'checkboxinput' %}
+  <div class="switch">
+    {{ field }}
+    <label for="{{ field.id_for_label }}"></label>
+  </div>
+  {% else %}
+    {{ field|foundation_field }}
+  {% endif %}
+  {% if field.errors %}<small class="error">{{ field.errors.0 }}</small>{% endif %}
+</div>

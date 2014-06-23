@@ -1,0 +1,6 @@
+{% load foundation %}
+<div class="row">
+  {% for field in fields %}
+  {% include "foundation/field.html" with columns=field.field.columns %}
+  {% endfor %}
+</div>

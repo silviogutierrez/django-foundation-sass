@@ -1,0 +1,18 @@
+{# TODO: Turn this into a tag and consolidated rows/columns and stuff. #}
+{% if form.non_field_errors %}
+<div class="large-12 columns">
+  <div data-alert class="form-errors alert-box error">
+    {% for e in form.non_field_errors %}
+      {{ e }}
+    {% endfor %}
+    <a href="#" class="close">&times;</a>
+  </div>
+</div>
+{% elif form.errors and general_error_indicator %}
+<div class="large-12 columns">
+  <div data-alert class="form-errors alert-box error">
+    There were errors in the form. Please double check the information.
+    <a href="#" class="close">&times;</a>
+  </div>
+</div>
+{% endif %}

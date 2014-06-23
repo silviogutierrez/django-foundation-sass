@@ -1,0 +1,20 @@
+{% load foundation %}
+<div class="row">
+  <div class="form-partial">
+    {% include "foundation/form_errors.html" %}
+
+    {% for field in form.hidden_fields %}
+    {{ field }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+    {% include "foundation/field.html" with columns=field.field.columns %}
+    {% endfor %}
+  </div>
+
+  {% if button %}
+  <div class="form-actions large-12 columns">
+    <button class="button">{{ button }}</button>
+  </div>
+  {% endif %}
+</div>
