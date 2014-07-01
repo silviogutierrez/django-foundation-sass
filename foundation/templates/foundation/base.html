@@ -9,9 +9,17 @@
     {% block head %}
     {% endblock %}
     {% aggregate %}
+
+    {% block style_libraries %}
+    {% endblock %}
+
     {% sass %}
     {% block sass %}<link rel="stylesheet" href="{{ STATIC_URL }}scss/app.scss" />{% endblock %}
     {% endsass %}
+
+    {% block style %}
+    {% endblock %}
+
     <script src="{{ STATIC_URL  }}js/vendor/modernizr.js"></script>
     {% endaggregate %}
   </head>
