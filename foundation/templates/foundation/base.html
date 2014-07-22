@@ -25,7 +25,7 @@
   </head>
   <body class="{% urlclass %} {% block bodyclass %}{% endblock %}">
     {% regroup messages by tags as type_list %}
-    <div class="top-messages">
+    <div class="clearfix top-messages">
     {% for type in type_list %}
     {% for message in type.list %}
       <div data-alert class="alert-box {{ type.grouper }}">
