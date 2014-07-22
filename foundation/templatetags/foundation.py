@@ -105,6 +105,19 @@ def foundation_field(field):
     return field
 
 
+@register.inclusion_tag('foundation/field.html')
+def foundation_field(field, columns='large-12', placeholder=False):
+    if placeholder:
+        field.field.widget.attrs['placeholder'] = field.label
+
+    return {
+        'field': field,
+        'columns': columns,
+        'placeholder': placeholder,
+    }
+    return field
+
+
 @register.inclusion_tag('foundation/form.html')
 def foundation_form(form=None, columns=None, button=False):
     # Empty forms are allowed.
