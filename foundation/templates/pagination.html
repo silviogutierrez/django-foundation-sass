@@ -17,7 +17,7 @@
   {% endif %}
 
   {% for page_link, page_number in pages %}
-  <li class="{% if page_number == page.number %}current{% endif %} number"><a href="{{ page_link }}">{{ page_number }}</a></li>
+  <li class="{% if page_number == page.number %}current{% endif %}"><a href="{{ page_link }}">{{ page_number }}</a></li>
   {% endfor %}
 
   {% if next %}
