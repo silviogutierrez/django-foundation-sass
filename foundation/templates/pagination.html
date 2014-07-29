@@ -1,0 +1,37 @@
+{% load i18n %}
+
+{% if paginator.num_pages > 1 %}
+<ul class="pagination">
+  {% if first %}
+    {% if page.number != 1 %}
+    <li class="arrow"><a href="{{ first }}">«</a></li>
+    {% else %}
+    <li class="arrow unavailable"><a>«</a></li>
+    {% endif %}
+  {% endif %}
+
+  {% if previous %}
+  <li class="arrow"><a href="{{ previous }}">‹</a></li>
+  {% else %}
+  <li class="arrow unavailable"><a>‹</a></li>
+  {% endif %}
+
+  {% for page_link, page_number in pages %}
+  <li class="{% if page_number == page.number %}current{% endif %} number"><a href="{{ page_link }}">{{ page_number }}</a></li>
+  {% endfor %}
+
+  {% if next %}
+  <li class="arrow"><a href="{{ next }}">›</a></li>
+  {% else %}
+  <li class="arrow unavailable"><a>›</a></li>
+  {% endif %}
+
+  {% if last %}
+    {% if page.number != paginator.num_pages %}
+    <li class="arrow"><a href="{{ last }}">»</li>
+    {% else %}
+    <li class="arrow unavailable"><a>»</a></li>
+    {% endif %}
+  {% endif %}
+</ul>
+{% endif %}
