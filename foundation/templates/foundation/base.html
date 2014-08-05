@@ -23,7 +23,7 @@
     <script src="{{ STATIC_URL  }}js/vendor/modernizr.js"></script>
     {% endaggregate %}
   </head>
-  <body class="{% urlclass %} {% block bodyclass %}{% endblock %}" {% block body_attributes %}{% endblock %}>
+  <body class="{% urlclass %} {% block bodyclass %}{% endblock %}" {% filter linebreaksbr|striptags %}{% block body_attributes %}{% endblock %}{% endfilter %}>
     {% regroup messages by tags as type_list %}
     <div class="clearfix top-messages">
     {% for type in type_list %}
